@@ -1,4 +1,4 @@
 package matheusleffa.telefoneCliente.domain.model;
 
-public class ClasseTeste {
+public enum PhoneType {
 }
