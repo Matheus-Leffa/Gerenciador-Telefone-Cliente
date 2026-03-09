@@ -1,5 +1,7 @@
 package matheusleffa.telefoneCliente.domain.model;
 
+import java.util.Objects;
+
 public class Phone {
     private String countryCode;
     private String ddd;
@@ -45,4 +47,33 @@ public class Phone {
         this.number = number;
         this.type = type;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+
+        if(o == null){
+            return false;
+        }
+
+        if(!(o instanceof Phone)){
+            return false;
+        }
+
+        Phone other = (Phone) o;
+
+        return Objects.equals(countryCode, other.countryCode)
+                && Objects.equals(ddd, other.ddd)
+                && Objects.equals(number, other.number);
+
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(countryCode, ddd, number);
+    }
+
+
 }

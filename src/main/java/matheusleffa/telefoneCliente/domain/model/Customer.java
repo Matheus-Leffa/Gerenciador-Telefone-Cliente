@@ -10,4 +10,16 @@ public class Customer {
     private String name;
     private String cpf;
     private List<Phone> phones = new ArrayList<>();
+
+    public void addPhone(Phone phone){
+        if(phone == null){
+            throw new IllegalArgumentException("Phone is required");
+        }
+
+        if(phones.contains(phone)){
+            throw new IllegalStateException("This phone already exists");
+        }
+
+        phones.add(phone);
+    }
 }
