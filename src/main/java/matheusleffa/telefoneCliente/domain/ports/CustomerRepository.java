@@ -5,5 +5,5 @@ import matheusleffa.telefoneCliente.domain.model.Customer;
 public interface CustomerRepository {
     boolean existsByCpf(String cpf);
 
-    void save(Customer customer);
+    Customer save(Customer customer);
 }

@@ -14,7 +14,7 @@ public class CreateCustomerUseCase {
         this.customerRepository = customerRepository;
     }
 
-    public void execute(CreateCustomerRequest request){
+    public Customer execute(CreateCustomerRequest request){
 
         if(customerRepository.existsByCpf(request.cpf())){
             throw new CpfAlreadyExistsException(request.cpf());
@@ -22,6 +22,6 @@ public class CreateCustomerUseCase {
 
         Customer customer = new Customer(request.name(), request.cpf());
 
-        customerRepository.save(customer);
+        return customerRepository.save(customer);
     }
 }

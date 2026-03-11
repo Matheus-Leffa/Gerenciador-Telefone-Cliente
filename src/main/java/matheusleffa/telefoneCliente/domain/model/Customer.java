@@ -34,6 +34,11 @@ public class Customer {
         this.phones = new ArrayList<>();
     }
 
+    public Customer(UUID id, String name, String cpf){
+        this(name, cpf);
+        this.id = id;
+    }
+
     public void addPhone(Phone phone){
         if(phone == null){
             throw new IllegalArgumentException("Phone is required");
@@ -44,5 +49,17 @@ public class Customer {
         }
 
         phones.add(phone);
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCpf() {
+        return cpf;
     }
 }
