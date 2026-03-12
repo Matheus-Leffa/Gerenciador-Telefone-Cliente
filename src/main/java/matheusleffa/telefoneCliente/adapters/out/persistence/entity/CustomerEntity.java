@@ -66,10 +66,6 @@ public class CustomerEntity {
         this.cpf = cpf;
     }
 
-    public void setPhones(List<PhoneEntity> phones) {
-        this.phones = phones;
-    }
-
     public List<PhoneEntity> getPhones() {
         return phones;
     }

@@ -8,22 +8,41 @@ import java.util.List;
 
 public class CustomerMapper {
 
-    public static void updateEntity(Customer customer, CustomerEntity entity){
+    public static CustomerEntity toEntity(Customer customer) {
+
+        CustomerEntity entity = new CustomerEntity(
+                customer.getName(),
+                customer.getCpf()
+        );
+
+        if (customer.getPhones() != null) {
+            customer.getPhones().forEach(phone ->
+                    entity.getPhones().add(
+                            PhoneMapper.toEntity(phone, entity)
+                    )
+            );
+        }
+
+        return entity;
+    }
+
+    public static void updateEntity(Customer customer, CustomerEntity entity) {
 
         entity.setName(customer.getName());
         entity.setCpf(customer.getCpf());
 
         entity.getPhones().clear();
 
-        if(customer.getPhones() != null){
-            customer.getPhones()
-                    .stream()
-                    .map(phone -> PhoneMapper.toEntity(phone, entity))
-                    .forEach(entity.getPhones()::add);
+        if (customer.getPhones() != null) {
+            customer.getPhones().forEach(phone ->
+                    entity.getPhones().add(
+                            PhoneMapper.toEntity(phone, entity)
+                    )
+            );
         }
     }
 
-    public static Customer toDomain(CustomerEntity entity){
+    public static Customer toDomain(CustomerEntity entity) {
 
         Customer customer = new Customer(
                 entity.getId(),
@@ -31,7 +50,7 @@ public class CustomerMapper {
                 entity.getCpf()
         );
 
-        if(entity.getPhones() != null){
+        if (entity.getPhones() != null) {
             entity.getPhones()
                     .stream()
                     .map(PhoneMapper::toDomain)

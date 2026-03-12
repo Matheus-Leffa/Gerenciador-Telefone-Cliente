@@ -30,10 +30,9 @@ public class JpaCustomerRepository implements CustomerRepository {
         CustomerEntity entity;
 
         if (customer.getId() == null) {
-            // criação
-            entity = CustomerMapper.updateEntity(customer);
+            entity = CustomerMapper.toEntity(customer);
         } else {
-            // atualização
+
             entity = repository.findById(customer.getId())
                     .orElseThrow(() -> new RuntimeException("Customer not found"));
 

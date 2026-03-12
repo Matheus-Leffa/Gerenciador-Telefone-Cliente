@@ -28,7 +28,7 @@ public class Customer {
             throw new IllegalArgumentException("CPF must have 11 digits");
         }
 
-        this.id = UUID.randomUUID();
+        this.id = null;
         this.name = name;
         this.cpf = cpf;
         this.phones = new ArrayList<>();
