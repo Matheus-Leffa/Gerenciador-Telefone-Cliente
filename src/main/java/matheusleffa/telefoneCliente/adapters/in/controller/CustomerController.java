@@ -1,6 +1,8 @@
 package matheusleffa.telefoneCliente.adapters.in.controller;
 
+import matheusleffa.telefoneCliente.adapters.in.controller.dto.AddPhoneRequest;
 import matheusleffa.telefoneCliente.adapters.in.controller.dto.CustomerResponse;
+import matheusleffa.telefoneCliente.application.usecase.AddPhoneToCustomerUseCase;
 import matheusleffa.telefoneCliente.application.usecase.CreateCustomerUseCase;
 import matheusleffa.telefoneCliente.adapters.in.controller.dto.CreateCustomerRequest;
 import matheusleffa.telefoneCliente.domain.model.Customer;
@@ -17,7 +19,7 @@ public class CustomerController {
 
     public CustomerController(CreateCustomerUseCase createCustomerUseCase, AddPhoneToCustomerUseCase addPhoneToCustomerUseCase) {
         this.createCustomerUseCase = createCustomerUseCase;
-        this.AddPhoneToCustomerUseCase = addPhoneToCustomerUseCase;
+        this.addPhoneToCustomerUseCase = addPhoneToCustomerUseCase;
     }
 
     @PostMapping
@@ -32,7 +34,7 @@ public class CustomerController {
     }
 
     @PostMapping("/{customerId}/phones")
-    public void addPhone(@PathVariable UUID customerId, @RequestBody addPhoneRequest request){
+    public void addPhone(@PathVariable UUID customerId, @RequestBody AddPhoneRequest request){
         addPhoneToCustomerUseCase.execute(customerId, request);
     }
 }
