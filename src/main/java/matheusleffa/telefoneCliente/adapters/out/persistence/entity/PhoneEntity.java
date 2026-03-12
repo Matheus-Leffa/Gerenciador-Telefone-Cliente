@@ -26,6 +26,26 @@ public class PhoneEntity {
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
 
+    protected PhoneEntity() {
+
+    }
+
+    public PhoneEntity(String countryCode, String ddd, String number, PhoneType type, CustomerEntity customer) {
+        this.countryCode = countryCode;
+        this.ddd = ddd;
+        this.number = number;
+        this.type = type;
+        this.customer = customer;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getCountryCode() {
         return countryCode;
     }

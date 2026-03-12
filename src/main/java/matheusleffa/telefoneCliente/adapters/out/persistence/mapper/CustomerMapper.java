@@ -8,23 +8,19 @@ import java.util.List;
 
 public class CustomerMapper {
 
-    public static CustomerEntity toEntity(Customer customer){
+    public static void updateEntity(Customer customer, CustomerEntity entity){
 
-        CustomerEntity entity = new CustomerEntity(
-                customer.getName(),
-                customer.getCpf()
-        );
+        entity.setName(customer.getName());
+        entity.setCpf(customer.getCpf());
+
+        entity.getPhones().clear();
 
         if(customer.getPhones() != null){
-            List<PhoneEntity> phones = customer.getPhones()
+            customer.getPhones()
                     .stream()
                     .map(phone -> PhoneMapper.toEntity(phone, entity))
-                    .toList();
-
-            entity.setPhones(phones);
+                    .forEach(entity.getPhones()::add);
         }
-
-        return entity;
     }
 
     public static Customer toDomain(CustomerEntity entity){

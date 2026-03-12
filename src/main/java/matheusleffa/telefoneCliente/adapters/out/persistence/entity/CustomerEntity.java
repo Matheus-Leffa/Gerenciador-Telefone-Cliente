@@ -32,6 +32,16 @@ public class CustomerEntity {
 
     }
 
+    public void addPhone(PhoneEntity phone) {
+        phones.add(phone);
+        phone.setCustomer(this);
+    }
+
+    public void removePhone(PhoneEntity phone) {
+        phones.remove(phone);
+        phone.setCustomer(null);
+    }
+
     public UUID getId() {
         return id;
     }

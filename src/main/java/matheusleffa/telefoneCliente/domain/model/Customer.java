@@ -51,6 +51,10 @@ public class Customer {
         phones.add(phone);
     }
 
+    public void removePhone(UUID phoneId) {
+        phones.removeIf(phone -> phone.getId().equals(phoneId));
+    }
+
     public UUID getId() {
         return id;
     }

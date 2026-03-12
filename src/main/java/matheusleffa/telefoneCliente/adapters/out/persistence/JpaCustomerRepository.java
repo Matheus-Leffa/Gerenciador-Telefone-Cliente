@@ -26,8 +26,22 @@ public class JpaCustomerRepository implements CustomerRepository {
 
     @Override
     public Customer save(Customer customer) {
-        CustomerEntity entity = CustomerMapper.toEntity(customer);
+
+        CustomerEntity entity;
+
+        if (customer.getId() == null) {
+            // criação
+            entity = CustomerMapper.updateEntity(customer);
+        } else {
+            // atualização
+            entity = repository.findById(customer.getId())
+                    .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+            CustomerMapper.updateEntity(customer, entity);
+        }
+
         CustomerEntity saved = repository.save(entity);
+
         return CustomerMapper.toDomain(saved);
     }
 

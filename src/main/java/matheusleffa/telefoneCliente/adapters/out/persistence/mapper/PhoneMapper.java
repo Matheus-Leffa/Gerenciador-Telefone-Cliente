@@ -7,17 +7,20 @@ import matheusleffa.telefoneCliente.domain.model.Phone;
 public class PhoneMapper {
 
     public static PhoneEntity toEntity(Phone phone, CustomerEntity customerEntity) {
-        PhoneEntity entity = new PhoneEntity();
-        entity.setCountryCode(phone.getCountryCode());
-        entity.setDdd(phone.getDdd());
-        entity.setNumber(phone.getNumber());
-        entity.setType(phone.getType());
-        entity.setCustomer(customerEntity);
-        return entity;
+
+        return new PhoneEntity(
+                phone.getCountryCode(),
+                phone.getDdd(),
+                phone.getNumber(),
+                phone.getType(),
+                customerEntity
+        );
     }
 
     public static Phone toDomain(PhoneEntity entity) {
+
         return new Phone(
+                entity.getId(),
                 entity.getCountryCode(),
                 entity.getDdd(),
                 entity.getNumber(),
