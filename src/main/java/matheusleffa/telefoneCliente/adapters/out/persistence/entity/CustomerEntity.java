@@ -1,20 +1,27 @@
 package matheusleffa.telefoneCliente.adapters.out.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import matheusleffa.telefoneCliente.domain.model.Customer;
+import matheusleffa.telefoneCliente.domain.model.Phone;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name = "customers")
 public class CustomerEntity {
 
     @Id
+    @GeneratedValue
     private UUID id;
 
     private String name;
 
     private String cpf;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PhoneEntity> phones = new ArrayList<>();
 
     public CustomerEntity(UUID id, String name, String cpf) {
         this.id = id;

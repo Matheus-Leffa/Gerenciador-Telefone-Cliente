@@ -48,6 +48,22 @@ public class Phone {
         this.type = type;
     }
 
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public String getDdd() {
+        return ddd;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public PhoneType getType() {
+        return type;
+    }
+
     @Override
     public boolean equals(Object o){
         if(this == o){
