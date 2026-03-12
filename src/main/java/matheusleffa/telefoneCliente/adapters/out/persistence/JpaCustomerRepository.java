@@ -33,6 +33,7 @@ public class JpaCustomerRepository implements CustomerRepository {
 
     @Override
     public Optional<Customer> findById(UUID id) {
-        return Optional.empty();
+        return repository.findById(id)
+                .map(CustomerMapper::toDomain);
     }
 }

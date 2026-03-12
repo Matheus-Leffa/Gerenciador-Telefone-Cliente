@@ -13,7 +13,7 @@ import java.util.UUID;
 public class CustomerEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String name;
@@ -23,8 +23,7 @@ public class CustomerEntity {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PhoneEntity> phones = new ArrayList<>();
 
-    public CustomerEntity(UUID id, String name, String cpf) {
-        this.id = id;
+    public CustomerEntity(String name, String cpf) {
         this.name = name;
         this.cpf = cpf;
     }
@@ -55,5 +54,13 @@ public class CustomerEntity {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public void setPhones(List<PhoneEntity> phones) {
+        this.phones = phones;
+    }
+
+    public List<PhoneEntity> getPhones() {
+        return phones;
     }
 }

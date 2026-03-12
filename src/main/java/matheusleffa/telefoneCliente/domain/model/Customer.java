@@ -62,4 +62,8 @@ public class Customer {
     public String getCpf() {
         return cpf;
     }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
 }
